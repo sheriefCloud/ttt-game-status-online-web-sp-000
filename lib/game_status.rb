@@ -17,24 +17,30 @@ WIN_COMBINATIONS = [
 
 
 def won?(board)
+  board.include?("X") || board.include?("O")
   if draw? == true
     return false
   elsif full? == true
     return false
   else
-    WIN_COMBINATIONS.each |i| do
-      WIN_COMBINATIONS[i].all? == "X" || WIN_COMBINATIONS[i] == "Y"
-      return WIN_COMBINATIONS[i]
+    i = 0
+    while i < WIN_COMBINATIONS.length do
+      winning_streak = WIN_COMBINATIONS[i].each do |j|
+        x_winning_array = []
+        o_winning_array = []
+        if board[winning_streak[j]] == "X"
+          x_winning_array << "X"
+          j += 1
+        elsif board[winning_streak[j]] == "Y"
+          o_winning_array << "Y"
+          j +=1
+        end
+        if x_winning_array.lenght = 3 || o_winning_array.length = 3
+          return WIN_COMBINATIONS[i]
+        end
+      i += 1
     end
-
   end
-
-  # return false if board is empty
-
-  # Return false if board is full and no win (draw) - see #full?
-
-  # Compaire to WIN_COMBINATIONS and return winning combinations if any are met for both X and Y
-
 end
 
 def full?(board)
