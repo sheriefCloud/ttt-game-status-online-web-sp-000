@@ -1,3 +1,7 @@
+
+
+
+
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -17,6 +21,11 @@ WIN_COMBINATIONS = [
 
 
 def won?(board)
+  if draw? == true
+    return false
+  elsif
+
+  end
 
   # return false if board is empty
 
@@ -28,17 +37,39 @@ end
 
 def full?(board)
     # check the board status
-    #Return false if the board is not full
-    # Return true if the board is not full
+    # Return true if the board is full
     # Tip use .each
+    x=0
+    o=0
+    board.each do |i|
+      i == "X" #|| i == "O"
+      x +=1
+    end
+    board.each do |j|
+      j == "O" #|| i == "O"
+      o +=1
+    end
+    if x+o == 9
+      return true
+    else
+      return false
+    end
 end
+
 
 def draw?(board)
   # Return true if the board is full and not won?
   # return false if the board is not won nad the board is not full
   # return return false if the board in won
-
-
+  if full? == true && won? == false
+    return true
+  elsif full? == false && won? == flase
+    return false
+  elsif won? == true
+    return false
+  else
+    return false
+  end
 end
 
 def over?(board)
