@@ -22,7 +22,10 @@ def won?(board)
   elsif full? == true
     return false
   else
-    condition_1 = WIN_COMBINATIONS[i]
+    WIN_COMBINATIONS.each |i| do
+      WIN_COMBINATIONS[i].all? == "X" || WIN_COMBINATIONS[i] == "Y"
+      return WIN_COMBINATIONS[i]
+    end
 
   end
 
