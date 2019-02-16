@@ -1,7 +1,3 @@
-
-
-
-
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -23,7 +19,10 @@ WIN_COMBINATIONS = [
 def won?(board)
   if draw? == true
     return false
-  elsif
+  elsif full? == true
+    return false
+  else
+    condition_1 = WIN_COMBINATIONS[i]
 
   end
 
