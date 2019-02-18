@@ -33,6 +33,17 @@ def full? (board)
 end
 
 
-def won?
+def won?(board)
+    win_array = []
+    if full?(board) == true
+        return false
+    else
+        WIN_COMBINATIONS.each do |win_array|
+            if board[win_array[0]] == board[win_array[1]] && board[win_array[0]] == board[win_array[2]]
+                return win_array
+            end
+        end
+    end
+
 
 end
