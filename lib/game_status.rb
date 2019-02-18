@@ -32,18 +32,48 @@ def full? (board)
     end
 end
 
+def draw?(board)
+  if won?(board) == true || (won?(baord) == false && full?(board) == true)
+    return false
+  elsif won?(board) == false && full?(board) == false
+    return true
+  end
+end
 
 def won?(board)
     win_array = []
+    index = 0
     if full?(board) == true
         return false
+      elsif board.all? {|cell| cell == " "}
+          return false
+
+    #puts "board empty"
+    return false
     else
         WIN_COMBINATIONS.each do |win_array|
-            if board[win_array[0]] == board[win_array[1]] && board[win_array[0]] == board[win_array[2]]
-                return win_array
+            if position_taken?(board, win_array[0]) == true
+                if board[win_array[0]] == board[win_array[1]] && board[win_array[0]] == board[win_array[2]]
+                  #puts win_array
+                  return win_array
+                end
             end
         end
     end
+end
+
+def over?(board)
+  if won?(board) == true && full?(board) == true
+    return true
+  elsif  won?(baord) == true && full?(board) == false
+    return true
+  end
+
+end
 
 
+def winner(board)
+    winning_array = won?(board)
+    player = board[winning_array[0]]
+    return player
 end
