@@ -67,17 +67,25 @@ end
 
 
 def over?(board)
-  if won?(board) == true && full?(board) == true
+  if draw?(board) == true
     return true
   elsif  won?(baord) == true && full?(board) == false
     return true
+  elsif won?(board) == true && full?(board) == true
+    return true
+  else
+    return false
   end
 
 end
 
 
 def winner(board)
+  if won?(board) == false
+    return nil!
+  else
     winning_array = won?(board)
     player = board[winning_array[0]]
     return player
+  end
 end
