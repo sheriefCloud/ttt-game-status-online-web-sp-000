@@ -1,3 +1,4 @@
+require 'pry'
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -35,43 +36,53 @@ end
 
 
 def won?(board)
-    win_array = []
-    index = 0
-    if full?(board) == true
-        return false
-      elsif board.all? {|cell| cell == " "}
-          return false
-    return false
-    else
+  # WIN_COMBINATIONS.detect do |combo|
+  #   board[combo[0]] == board[combo[1]] &&
+  #   board[combo[1]] == board[combo[2]] &&
+  #   position_taken?(board, combo[0])
+  # end
+
+   win_array = []
+   index = 0
+  #  if full?(board) == true
+  #      #return false
+  #    elsif board.all? {|cell| cell == " "}
+  #        return false
+  #   return false
+  #   else
         WIN_COMBINATIONS.each do |win_array|
-            if position_taken?(board, win_array[0]) == true
-                if board[win_array[0]] == board[win_array[1]] && board[win_array[0]] == board[win_array[2]]
+            if position_taken?(board, win_array[0])
+                if board[win_array[0]] == board[win_array[1]] && board[win_array[1]] == board[win_array[2]]
                   #puts win_array
+                  # binding.pry
                   return win_array
                 end
             end
         end
-    end
+
+    #end
+    false
 end
 
 def draw?(board)
-  if won?(board) == true
-    return false
-  elsif full?(board) == false
-    return false
-  else
-    return true
-  end
+  if !won?(board) && full?(board)
+    true
+    elsif (!won?(board) && !full?(board)) || won?(board)
+      false
+    end
+
 end
 
 
 def over?(board)
-  if  won?(board) == true && full?(board) == false
+  if  won?(board) && !full?(board)
     return true
-  elsif draw?(board) == true
+  elsif draw?(board)
     return true
-  elsif won?(board) == true && full?(board) == true
+  elsif won?(board) && full?(board)
     return true
+  elsif !won?(board) && !full?(board)
+    return false
   else
     return false
   end
@@ -80,12 +91,13 @@ end
 
 
 def winner(board)
-  if won?(board) == false
-    return nil
-  else
+  # if won?(board) == false
+  #   return nil
+  # else
+  if
     winning_array = won?(board)
     player = board[winning_array[0]]
     return player
-  end
+   end
 
 end
