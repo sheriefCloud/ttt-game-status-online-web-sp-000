@@ -32,13 +32,7 @@ def full? (board)
     end
 end
 
-def draw?(board)
-  if won?(board) == true || (won?(baord) == false && full?(board) == true)
-    return false
-  elsif won?(board) == false && full?(board) == false
-    return true
-  end
-end
+
 
 def won?(board)
     win_array = []
@@ -47,8 +41,6 @@ def won?(board)
         return false
       elsif board.all? {|cell| cell == " "}
           return false
-
-    #puts "board empty"
     return false
     else
         WIN_COMBINATIONS.each do |win_array|
@@ -61,6 +53,18 @@ def won?(board)
         end
     end
 end
+
+def draw?(board)
+  if won?(board) == true
+    return false
+  elsif full?(board) == false
+    return false
+  else
+    return true
+
+  end
+end
+
 
 def over?(board)
   if won?(board) == true && full?(board) == true
