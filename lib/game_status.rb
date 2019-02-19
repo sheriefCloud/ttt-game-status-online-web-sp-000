@@ -66,11 +66,20 @@ end
 
 def draw?(board)
   if !won?(board) && full?(board)
+<<<<<<< HEAD
     true
     elsif (!won?(board) && !full?(board)) || won?(board)
       false
     end
 
+=======
+    #return true
+  elsif !won?(board) && !full?(board)
+    #return false
+  else
+    #return false
+  end
+>>>>>>> 8e9fea75491423adab7b3bccec4a50650f22a1ee
 end
 
 
